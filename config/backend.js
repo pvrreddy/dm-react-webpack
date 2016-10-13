@@ -75,11 +75,15 @@ module.exports = class BackendConfig extends BaseConfig {
     // Whitelist of modules to bundle on server
     // FIXME: Move this out into configuration
     let whitelistModules = [
+    ]
+    // Blacklist of server modules (which shouldn't be bundled)
+    let blacklistModules = [
       'dm-sharedb-server'
     ]
     let modulesPath = path.join(this.options.dirname, 'node_modules')
     let nodeModules = fs.readdirSync(modulesPath).filter((name) => {
-      return name !== '.bin' && !/^dm-/.test(name) && whitelistModules.indexOf(name) === -1
+      return blacklistModules.indexOf(name) !== -1 ||
+          (name !== '.bin' && !/^dm-/.test(name) && whitelistModules.indexOf(name) === -1)
     })
 
     return (context, request, cb) => {
