@@ -62,7 +62,7 @@ module.exports = class BackendConfig extends BaseConfig {
         '  require.resolve("source-map-support");',
         '  require("source-map-support").install();',
         '} catch(e) {',
-        '  require("derby-webpack/node_modules/source-map-support").install();',
+        '  require("dm-react-webpack/node_modules/source-map-support").install();',
         '}'
       ].join(' '), { raw: true, entryOnly: false })
     ]

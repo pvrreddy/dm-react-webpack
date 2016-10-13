@@ -7,8 +7,8 @@ const FrontendWatchConfig = require('./config/frontendWatch')
 module.exports = (function () {
   let options = {}
   try {
-    require.resolve(path.join(process.cwd(), 'derby-webpack.config'))
-    options = require(path.join(process.cwd(), 'derby-webpack.config'))
+    require.resolve(path.join(process.cwd(), 'webpack.config'))
+    options = require(path.join(process.cwd(), 'webpack.config'))
   } catch (e) {}
   if (process.env.WP_BACKEND) {
     if (process.env.WP_WATCH) {
