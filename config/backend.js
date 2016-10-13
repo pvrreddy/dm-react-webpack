@@ -70,12 +70,16 @@ module.exports = class BackendConfig extends BaseConfig {
 
   // Treat any module in node_modules or required from any module
   // within node_modules as an external dependency.
-  // Bundle only modules which are derby components.
+  // Bundle only modules which start from dm-* and whitelisted modules
   _getExternalsFn () {
-    // Get list of modules excluding derby components (dm- or d-)
+    // Whitelist of modules to bundle on server
+    // FIXME: Move this out into configuration
+    let whitelistModules = [
+      'dm-sharedb-server'
+    ]
     let modulesPath = path.join(this.options.dirname, 'node_modules')
     let nodeModules = fs.readdirSync(modulesPath).filter((name) => {
-      return name !== '.bin' && !/^dm-/.test(name) && !/^d-/.test(name)
+      return name !== '.bin' && !/^dm-/.test(name) && whitelistModules.indexOf(name) === -1
     })
 
     return (context, request, cb) => {
