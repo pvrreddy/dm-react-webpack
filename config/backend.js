@@ -72,7 +72,6 @@ module.exports = class BackendConfig extends BaseConfig {
   // within node_modules as an external dependency.
   // Bundle only modules which are derby components.
   _getExternalsFn () {
-
     // Get list of modules excluding derby components (dm- or d-)
     let modulesPath = path.join(this.options.dirname, 'node_modules')
     let nodeModules = fs.readdirSync(modulesPath).filter((name) => {
@@ -82,13 +81,14 @@ module.exports = class BackendConfig extends BaseConfig {
     return (context, request, cb) => {
       let inModules = false
       for (let i = 0; i < nodeModules.length; i++) {
-        let moduleName = nodeModules[i]
-        let testContext = new RegExp(`node_modules/${ moduleName }(?:$|/)`).test(context)
-        let testRequest = new RegExp(`^${ moduleName }(?:$|/)`).test(request)
+        let moduleName = nodeModules[ i ]
+        let testContext = new RegExp(`node_modules/${moduleName}(?:$|/)`).test(context)
+        let testRequest = new RegExp(`^${moduleName}(?:$|/)`).test(request)
         if (testContext || testRequest) {
           inModules = true
           break
         }
+      }
       if (inModules) {
         cb(null, 'commonjs #{ request }')
       } else {
