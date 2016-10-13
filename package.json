@@ -1,0 +1,49 @@
+{
+  "name": "dm-react-webpack",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp run",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Pavel Zhukov",
+    "email": "cray0000@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "assets-webpack-plugin": "^3.3.0",
+    "async": "^1.3.0",
+    "autoprefixer": "^6.3.1",
+    "babel": "^6.5.2",
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-preset-stage-0": "^6.16.0",
+    "csswring": "^5.0.0",
+    "extract-text-webpack-plugin": "git://github.com/dmapper/extract-text-webpack-plugin.git",
+    "html-util": "^0.2.1",
+    "json-loader": "^0.5.2",
+    "loader-utils": "^0.2.11",
+    "lodash": "^3.10.0",
+    "node-libs-browser": "^0.5.2",
+    "node-noop": "0.0.1",
+    "postcss-filename-prefix": "git://github.com/cray0000/postcss-filename-prefix.git",
+    "postcss-loader": "^0.9.1",
+    "raw-loader": "^0.5.1",
+    "resolve": "^1.1.6",
+    "source-map": "^0.5.3",
+    "source-map-support": "^0.4.0",
+    "style-loader": "~0.13.1",
+    "stylus-loader": "~2.1.0",
+    "webpack": "1.13.1",
+    "webpack-dev-server": "1.14.0",
+    "yaml-loader": "^0.1.0"
+  },
+  "peerDependencies": {
+    "racer-highway": ">=6.1.0"
+  }
+}

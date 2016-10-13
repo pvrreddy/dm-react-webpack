@@ -1,0 +1,81 @@
+const _ = require('lodash')
+const csswring = require('csswring')
+const webpack = require('webpack')
+const FrontendConfig = require('./frontend')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const AssetsPlugin = require('assets-webpack-plugin')
+
+module.exports = class FrontendBuildConfig extends FrontendConfig {
+
+  constructor () {
+    super()
+    _.defaultsDeep(this.options, {
+      frontend: {
+        productionSourceMaps: false,
+        cache: false,
+        uglify: true
+      }
+    })
+
+    // Add hash to bundles' filenames for long-term caching in production
+    this.config.output.filename = '[name].[hash].js'
+
+    this.config.cache = this.options.frontend.cache
+    this.config.debug = false
+    if (this.options.frontend.productionSourceMaps) {
+      this.config.devtool = 'source-map'
+    }
+
+    this.config.postcss = this._getPostCss([
+      csswring() // minification
+    ])
+
+    this.config.stats = this.config.stats || {}
+    if (this.config.stats.children == null) this.config.stats.children = false
+
+    this.config.module.loaders = this.config.module.loaders.concat([{
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract('style-loader', 'raw!postcss')
+    }])
+
+    this.config.module.loaders = this.config.module.loaders.concat(
+        this._getBeforeStylusLoaders())
+
+    this.config.module.loaders.push(this._getStylusLoader())
+
+    this.config.module.postLoaders.push({
+      test: /\.js$/,
+      loaders: ['babel?presets[]=es2015&presets[]=stage-0&presets[]=react'],
+      exclude: /node_modules/
+    })
+
+    this.config.plugins.push(new ExtractTextPlugin('[name].css', {
+      priorityModules: this.options.priorityModules || []
+    }))
+
+    if (this.options.frontend.uglify) {
+      let uglifyOptions = {
+        compress: {
+          warnings: false
+        }
+      }
+      if (!this.options.frontend.productionSourceMaps) {
+        uglifyOptions.sourceMap = false
+      }
+      this.config.plugins.push(new webpack.optimize.UglifyJsPlugin(uglifyOptions))
+    }
+
+    // Write hash info metadata into json file
+    this.config.plugins.push(new AssetsPlugin({
+      filename: 'assets.json',
+      fullPath: false,
+      path: this.config.output.path
+    }))
+  }
+
+  _getActualStylusLoader (...args) {
+    return ExtractTextPlugin.extract('style-loader', super._getActualStylusLoader(...args))
+  }
+
+}
+
