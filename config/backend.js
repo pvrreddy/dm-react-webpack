@@ -98,7 +98,7 @@ module.exports = class BackendConfig extends BaseConfig {
         }
       }
       if (inModules) {
-        cb(null, 'commonjs #{ request }')
+        cb(null, `commonjs ${request}`)
       } else {
         cb()
       }
