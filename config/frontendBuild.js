@@ -44,7 +44,7 @@ module.exports = class FrontendBuildConfig extends FrontendConfig {
     this.config.module.loaders.push(this._getStylusLoader())
 
     this.config.module.postLoaders.push({
-      test: /\.js$/,
+      test: /\.jsx?$/,
       loaders: ['babel?presets[]=es2015&presets[]=stage-0&presets[]=react'],
       exclude: /node_modules/
     })

@@ -26,7 +26,7 @@ module.exports = class BackendConfig extends BaseConfig {
 
     // Babel
     this.config.module.loaders = this.config.module.loaders.concat([{
-      test: /\.js$/,
+      test: /\.jsx?$/,
       loaders: ['babel?presets[]=es2015&presets[]=stage-0&presets[]=react'],
       exclude: /node_modules/
     }])

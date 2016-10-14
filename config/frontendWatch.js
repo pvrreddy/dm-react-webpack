@@ -30,7 +30,7 @@ module.exports = class FrontendWatchConfig extends FrontendConfig {
     this.config.module.loaders.push(this._getStylusLoader())
 
     this.config.module.postLoaders.push({
-      test: /\.js$/,
+      test: /\.jsx?$/,
       loaders: ['babel?cacheDirectory&presets[]=es2015&presets[]=stage-0&presets[]=react&presets[]=react-hmre'],
       exclude: /node_modules/
     })
