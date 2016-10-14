@@ -26,7 +26,7 @@ module.exports = class BackendConfig extends BaseConfig {
 
     // Babel
     this.config.module.loaders = this.config.module.loaders.concat([{
-      test: /\.jsx?$/,
+      test: /\.js$/,
       loaders: ['babel?presets[]=es2015&presets[]=stage-0&presets[]=react&plugins[]=add-module-exports'],
       exclude: /node_modules/
     }])
@@ -57,6 +57,7 @@ module.exports = class BackendConfig extends BaseConfig {
 
     this.config.plugins = [
       new webpack.NormalModuleReplacementPlugin(/\.(styl|css)$/, require.resolve('node-noop')),
+      new webpack.NormalModuleReplacementPlugin(/\.jsx$/, require.resolve('react-empty-component-es6')),
       new webpack.BannerPlugin([
         'try {',
         '  require.resolve("source-map-support");',

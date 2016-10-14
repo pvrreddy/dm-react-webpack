@@ -38,6 +38,7 @@
     "postcss-filename-prefix": "git://github.com/cray0000/postcss-filename-prefix.git",
     "postcss-loader": "^0.9.1",
     "raw-loader": "^0.5.1",
+    "react-empty-component-es6": "git://github.com/dmapper/react-empty-component-es6.git",
     "resolve": "^1.1.6",
     "source-map": "^0.5.3",
     "source-map-support": "^0.4.0",
