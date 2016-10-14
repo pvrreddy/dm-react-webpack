@@ -7,8 +7,8 @@ const AssetsPlugin = require('assets-webpack-plugin')
 
 module.exports = class FrontendBuildConfig extends FrontendConfig {
 
-  constructor () {
-    super()
+  constructor (...args) {
+    super(...args)
     _.defaultsDeep(this.options, {
       frontend: {
         productionSourceMaps: false,

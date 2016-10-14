@@ -6,8 +6,8 @@ const BaseConfig = require('./base')
 
 module.exports = class BackendConfig extends BaseConfig {
 
-  constructor () {
-    super()
+  constructor (...args) {
+    super(...args)
 
     _.defaultsDeep(this.options, {
       backend: {

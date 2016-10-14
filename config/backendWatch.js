@@ -3,8 +3,8 @@ const BackendConfig = require('./backend')
 
 module.exports = class BackendWatchConfig extends BackendConfig {
 
-  constructor () {
-    super()
+  constructor (...args) {
+    super(...args)
 
     this.config.cache = true
     this.config.debug = true

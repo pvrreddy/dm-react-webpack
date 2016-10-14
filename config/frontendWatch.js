@@ -5,8 +5,8 @@ let FrontendConfig = require('./frontend')
 
 module.exports = class FrontendWatchConfig extends FrontendConfig {
 
-  constructor () {
-    super()
+  constructor (...args) {
+    super(...args)
 
     this.config.cache = true
     this.config.debug = true

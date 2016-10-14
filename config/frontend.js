@@ -9,8 +9,8 @@ const url = require('url')
 
 module.exports = class FrontendConfig extends BaseConfig {
 
-  constructor () {
-    super()
+  constructor (...args) {
+    super(...args)
     _.defaultsDeep(this.options, {
       stylus: {},
       frontend: {

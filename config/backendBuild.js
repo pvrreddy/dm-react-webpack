@@ -4,8 +4,8 @@ const BackendConfig = require('./backend')
 
 module.exports = class BackendBuildConfig extends BackendConfig {
 
-  constructor () {
-    super()
+  constructor (...args) {
+    super(...args)
     _.defaultsDeep(this.options, {
       backend: {
         cache: false,
