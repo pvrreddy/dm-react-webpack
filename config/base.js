@@ -47,7 +47,7 @@ module.exports = class BaseConfig {
     }
 
     this.config.resolve = {
-      extensions: [ '', '.json', '.js', '.yaml', '.coffee' ],
+      extensions: [ '', '.json', '.js', '.jsx', '.yaml', '.coffee' ],
       fallback: path.join(__dirname, '/../..')
     }
 
