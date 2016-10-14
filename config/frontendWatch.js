@@ -31,7 +31,7 @@ module.exports = class FrontendWatchConfig extends FrontendConfig {
 
     this.config.module.postLoaders.push({
       test: /\.jsx?$/,
-      loaders: ['babel?cacheDirectory&presets[]=es2015&presets[]=stage-0&presets[]=react&presets[]=react-hmre'],
+      loaders: ['babel?cacheDirectory&presets[]=es2015&presets[]=stage-0&presets[]=react&presets[]=react-hmre&plugins[]=add-module-exports'],
       exclude: /node_modules/
     })
 
