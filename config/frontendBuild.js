@@ -45,7 +45,7 @@ module.exports = class FrontendBuildConfig extends FrontendConfig {
 
     this.config.module.postLoaders.push({
       test: /\.jsx?$/,
-      loaders: ['babel?presets[]=es2015&presets[]=stage-0&presets[]=react&plugins[]=add-module-exports'],
+      loaders: ['babel?presets[]=es2015&presets[]=stage-0&presets[]=react&plugins[]=add-module-exports&plugins[]=transform-decorators-legacy'],
       exclude: /node_modules/
     })
 
