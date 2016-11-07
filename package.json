@@ -1,8 +1,5 @@
 {
   "name": "dm-react-webpack",
-  "publishConfig": {
-    "registry": "http://npm.idecisiongames.com/"
-  },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
