@@ -81,8 +81,15 @@ module.exports = class BaseConfig {
 
   _getHeaderEntry () { return [] }
 
+  _getCoreEntries () {
+    return [
+      // Required to properly support compiled generators and async/await in the browser
+      'babel-polyfill'
+    ]
+  }
+
   _getEntries (apps, baseEntry = []) {
-    baseEntry = this._getHeaderEntry().concat(baseEntry)
+    baseEntry = this._getCoreEntries().concat(this._getHeaderEntry(), baseEntry)
     let res = {}
     for (let appName in apps) {
       if (!apps.hasOwnProperty(appName)) continue
