@@ -40,10 +40,15 @@ module.exports = class FrontendConfig extends BaseConfig {
 
     this.config.entry = this._getEntries(this.apps, this.options.frontend.baseEntry)
 
-    this.config.module.loaders = this.config.module.loaders.concat([ {
-      include: /racer-highway\/lib\/browser\/index\.js$/,
-      loaders: [ path.join(__dirname, '../loaders/racer-highway-loader.js') ]
-    }])
+    // [sharedb] When addon is enabled, plug in racer-highway-loader to handle
+    // the client-side part of racer-highway. Which is used to establish
+    // the client-server websocket connection for the sharedb
+    if (this.options.addons.includes('sharedb')) {
+      this.config.module.loaders = this.config.module.loaders.concat([ {
+        include: /racer-highway\/lib\/browser\/index\.js$/,
+        loaders: [ path.join(__dirname, '../loaders/racer-highway-loader.js') ]
+      }])
+    }
 
     // Append additional loaders to the beginning of default loaders array
     ;['loaders', 'preLoaders', 'postLoaders'].forEach((loaderType) => {
@@ -69,7 +74,15 @@ module.exports = class FrontendConfig extends BaseConfig {
     ])
   }
 
-  _getHeaderEntry () { return ['racer-highway/lib/browser'] }
+  _getHeaderEntry () {
+    let res = []
+    // [sharedb] When addon is enabled, add client-side of the sharedb lib
+    // to the client bundles
+    if (this.options.addons.includes('sharedb')) {
+      res.push('racer-highway/lib/browser')
+    }
+    return res
+  }
 
   _getBeforeStylusEntries () {
     let res = {}
