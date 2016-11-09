@@ -50,6 +50,14 @@ module.exports = class FrontendConfig extends BaseConfig {
       }])
     }
 
+    this.config.module.loaders = this.config.module.loaders.concat([
+      {
+        test: /\.svg$/,
+        loaders: ['babel?presets[]=es2015&presets[]=stage-0&presets[]=react', 'react-svg?jsx=1'],
+        exclude: /(node_modules)/
+      }
+    ])
+
     // Append additional loaders to the beginning of default loaders array
     ;['loaders', 'preLoaders', 'postLoaders'].forEach((loaderType) => {
       this.config.module[loaderType] = this.options.frontend[loaderType].concat(
