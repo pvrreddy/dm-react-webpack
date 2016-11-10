@@ -29,9 +29,13 @@ module.exports = class FrontendWatchConfig extends FrontendConfig {
 
     this.config.module.loaders.push(this._getStylusLoader())
 
+    let jsxLoaders = ['babel?cacheDirectory&presets[]=es2015&presets[]=stage-0&presets[]=react&presets[]=react-hmre&plugins[]=add-module-exports&plugins[]=transform-decorators-legacy']
+
+    if (this.config.classPrefix) jsxLoaders.push('react-prefix')
+
     this.config.module.postLoaders.push({
       test: /\.jsx?$/,
-      loaders: ['babel?cacheDirectory&presets[]=es2015&presets[]=stage-0&presets[]=react&presets[]=react-hmre&plugins[]=add-module-exports&plugins[]=transform-decorators-legacy'],
+      loaders: jsxLoaders,
       exclude: /node_modules/
     })
 

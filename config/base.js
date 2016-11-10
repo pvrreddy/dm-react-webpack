@@ -12,6 +12,7 @@ module.exports = class BaseConfig {
       unsafeCache: true,
       dirname: process.cwd(),
       moduleMode: false,
+      classPrefix: false,
       devtool: 'source-map',
       preLoaders: [],
       postLoaders: [],

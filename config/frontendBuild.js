@@ -43,9 +43,13 @@ module.exports = class FrontendBuildConfig extends FrontendConfig {
 
     this.config.module.loaders.push(this._getStylusLoader())
 
+    let jsxLoaders = ['babel?presets[]=es2015&presets[]=stage-0&presets[]=react&plugins[]=add-module-exports&plugins[]=transform-decorators-legacy'] 
+
+    if (this.config.classPrefix) jsxLoaders.push('react-prefix')
+
     this.config.module.postLoaders.push({
       test: /\.jsx?$/,
-      loaders: ['babel?presets[]=es2015&presets[]=stage-0&presets[]=react&plugins[]=add-module-exports&plugins[]=transform-decorators-legacy'],
+      loaders: jsxLoaders,
       exclude: /node_modules/
     })
 
