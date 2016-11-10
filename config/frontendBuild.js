@@ -45,7 +45,7 @@ module.exports = class FrontendBuildConfig extends FrontendConfig {
 
     let jsxLoaders = ['babel?presets[]=es2015&presets[]=stage-0&presets[]=react&plugins[]=add-module-exports&plugins[]=transform-decorators-legacy'] 
 
-    if (this.config.classPrefix) jsxLoaders.push('react-prefix')
+    if (this.options.frontend.classPrefix) jsxLoaders.push('react-prefix')
 
     this.config.module.postLoaders.push({
       test: /\.jsx?$/,

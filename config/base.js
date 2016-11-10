@@ -12,7 +12,6 @@ module.exports = class BaseConfig {
       unsafeCache: true,
       dirname: process.cwd(),
       moduleMode: false,
-      classPrefix: false,
       devtool: 'source-map',
       preLoaders: [],
       postLoaders: [],
@@ -60,7 +59,7 @@ module.exports = class BaseConfig {
       this.config.resolve.alias = this.options.resolve.alias
     }
 
-    this.config.plugins = []
+    this.config.plugins = this.options.plugins || []
 
     this.config.module.preLoaders = this.options.preLoaders
 
