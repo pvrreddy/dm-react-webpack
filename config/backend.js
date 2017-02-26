@@ -74,13 +74,13 @@ module.exports = class BackendConfig extends BaseConfig {
   // Bundle only modules which start from dm-* and whitelisted modules
   _getExternalsFn () {
     // Whitelist of modules to bundle on server
-    // FIXME: Move this out into configuration
     let whitelistModules = [
-    ]
+    ].concat(this.options.serverBundle && this.options.serverBundle.include || [])
     // Blacklist of server modules (which shouldn't be bundled)
     let blacklistModules = [
-      'dm-sharedb-server'
-    ]
+      'dm-sharedb-server',
+      'dm-worker'
+    ].concat(this.options.serverBundle && this.options.serverBundle.exclude || [])
     let modulesPath = path.join(this.options.dirname, 'node_modules')
     let nodeModules = fs.readdirSync(modulesPath).filter((name) => {
       return blacklistModules.indexOf(name) !== -1 ||
