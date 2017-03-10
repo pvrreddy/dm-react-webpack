@@ -72,7 +72,8 @@ module.exports = class FrontendWatchConfig extends FrontendConfig {
       noInfo: true,
       headers: { 'Access-Control-Allow-Origin': '*' },
       host: '0.0.0.0',
-      port: this.options.webpackPort
+      port: this.options.webpackPort,
+      compress: true
     }
   }
 
