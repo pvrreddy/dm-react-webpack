@@ -37,7 +37,7 @@
     "lodash": "^3.10.0",
     "node-libs-browser": "^0.5.2",
     "node-noop": "0.0.1",
-    "postcss-filename-prefix": "https://github.com/cray0000/postcss-filename-prefix/tarball/master",
+    "postcss-filename-prefix": "^1.0.0",
     "postcss-loader": "^0.9.1",
     "raw-loader": "^0.5.1",
     "react-empty-component-es6": "https://github.com/dmapper/react-empty-component-es6/tarball/master",
