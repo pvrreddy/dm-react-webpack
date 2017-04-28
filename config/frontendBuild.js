@@ -43,7 +43,7 @@ module.exports = class FrontendBuildConfig extends FrontendConfig {
 
     this.config.module.loaders.push(this._getStylusLoader())
 
-    let jsxLoaders = ['babel?presets[]=es2015&presets[]=stage-0&presets[]=react&plugins[]=add-module-exports&plugins[]=transform-decorators-legacy'] 
+    let jsxLoaders = ['babel?presets[]=es2015&presets[]=stage-0&presets[]=react&plugins[]=add-module-exports&plugins[]=transform-decorators-legacy']
 
     if (this.options.frontend.classPrefix) jsxLoaders.push('react-prefix')
 
@@ -52,6 +52,13 @@ module.exports = class FrontendBuildConfig extends FrontendConfig {
       loaders: jsxLoaders,
       exclude: /node_modules/
     })
+
+    // Set production environment to get minified library builds (e.g. React)
+    this.config.plugins.push(new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }))
 
     this.config.plugins.push(new ExtractTextPlugin('[name].css', {
       priorityModules: this.options.priorityModules || []
