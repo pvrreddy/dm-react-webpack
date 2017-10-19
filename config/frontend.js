@@ -45,7 +45,7 @@ module.exports = class FrontendConfig extends BaseConfig {
     // the client-server websocket connection for the sharedb
     if (this.options.addons.includes('sharedb')) {
       this.config.module.loaders = this.config.module.loaders.concat([ {
-        include: /racer-highway\/lib\/browser\/index\.js$/,
+        include: path.resolve(__dirname, '../../racer-highway/lib/browser/index.js'),
         loaders: [ path.join(__dirname, '../loaders/racer-highway-loader.js') ]
       }])
     }
